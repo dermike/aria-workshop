@@ -1,37 +1,29 @@
 'use strict';
 (function examples() {
-  Vue.component('accessibility-tree-fail', {
-    'template': '<div class="button" v-on:click="click">{{ message }}</div>',
+  const buttonClick = {
     'data': function data() {
       return {
-        'message': 'Click me'
+        'clicked': false
       };
     },
     'methods': {
       'click': function click() {
-        this.message = 'You clicked me!';
+        this.clicked = !this.clicked;
         setTimeout(() => {
-          this.message = 'Click me';
-        }, 1000);
+          this.clicked = !this.clicked;
+        }, 300);
       }
     }
+  };
+
+  Vue.component('accessibility-tree-fail', {
+    'template': '<div class="button" v-bind:class="{ clicked: clicked }" v-on:click="click">Click me</div>',
+    'mixins': [buttonClick]
   });
 
   Vue.component('accessibility-tree-win', {
-    'template': '<button v-on:click="click">{{ message }}</button>',
-    'data': function data() {
-      return {
-        'message': 'Click me'
-      };
-    },
-    'methods': {
-      'click': function click() {
-        this.message = 'You clicked me!';
-        setTimeout(() => {
-          this.message = 'Click me';
-        }, 1000);
-      }
-    }
+    'template': '<button v-bind:class="{ clicked: clicked }" v-on:click="click">Click me</button>',
+    'mixins': [buttonClick]
   });
 
   window.example = new Vue({

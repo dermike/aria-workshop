@@ -29,12 +29,16 @@ body {
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  user-select: none;
   background-image: none;
   border: 1px solid transparent;
-  border-radius: 4px
+  border-radius: 4px;
+  transition: all .15s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 
-.button:hover {
+.clicked {
+  transform: scale(0.5);
+}
+
+.button:hover, .button:active {
   background-color: #d40963;
 }
