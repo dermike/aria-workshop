@@ -80,30 +80,30 @@ li {
   transition: all .15s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 
-.pressed li {
+.checked li {
   display: block;
 }
 
-.pressed .confirm li {
+.checked .confirm li {
   display: inline;
   width: 200px;
 }
 
-.pressed .confirm a {
+.checked .confirm a {
   min-width: 110px;
 }
 
-.pressed .confirm li:first-child a {
+.checked .confirm li:first-child a {
   background-color: #ccc;
   color: #333;
   margin-right: 2em;
 }
 
-.pressed .confirm li:last-child a {
+.checked .confirm li:last-child a {
   background-color: #d40963;
 }
 
-.pressed a {
+.checked a {
   text-decoration: none;
   min-width: 190px;
 }
@@ -116,7 +116,7 @@ li {
   display: none;
 }
 
-.active, [aria-pressed="true"] {
+.active, [aria-checked="true"] {
   background-color: #d40963;
 }
 

@@ -97,9 +97,9 @@
     }
   });
 
-  Vue.component('pressed-fail', {
+  Vue.component('checked-fail', {
     'template': `
-      <div class="pressed">
+      <div class="checked">
         <h1>Where do you want to pick up the book?</h1>
         <ul>
           <li><a href="javascript:void(0)" v-on:click="click" class="button">Huddinge</a></li>
@@ -123,14 +123,14 @@
     }
   });
 
-  Vue.component('pressed-win', {
+  Vue.component('checked-win', {
     'template': `
-      <div class="pressed">
-        <h1>Where do you want to pick up the book?</h1>
-        <ul>
-          <li><a href="javascript:void(0)" v-on:click="click" aria-pressed="false" role="button">Huddinge</a></li>
-          <li><a href="javascript:void(0)" v-on:click="click" aria-pressed="false" role="button">Solna</a></li>
-          <li><a href="javascript:void(0)" v-on:click="click" aria-pressed="false" role="button">Home delivery</a></li>
+      <div class="checked">
+        <h1 id="location-label">Where do you want to pick up the book?</h1>
+        <ul role="radiogroup" aria-labelledby="location-label">
+          <li><a href="javascript:void(0)" role="radio" v-on:keydown="key" v-on:click="click" aria-checked="false" tabindex="0" class="button">Huddinge</a></li>
+          <li><a href="javascript:void(0)" role="radio" v-on:keydown="key" v-on:click="click" aria-checked="false" tabindex="-1" class="button">Solna</a></li>
+          <li><a href="javascript:void(0)" role="radio" v-on:keydown="key" v-on:click="click" aria-checked="false" tabindex="-1" class="button">Home delivery</a></li>
         </ul>
         <ul class="confirm">
           <li><a href="javascript:void(0)" role="button">Cancel</a></li>
@@ -140,11 +140,39 @@
     `,
     'methods': {
       'click': function click(e) {
-        let locations = e.target.parentNode.parentNode.querySelectorAll('a');
+        this.select(e.target);
+      },
+      'select': function select(el) {
+        let locations = el.parentNode.parentNode.querySelectorAll('a');
         for (let i = 0; i < locations.length; i += 1) {
-          locations[i].setAttribute('aria-pressed', 'false');
+          locations[i].setAttribute('aria-checked', 'false');
+          locations[i].setAttribute('tabindex', '-1');
         }
-        e.target.setAttribute('aria-pressed', 'true');
+        el.setAttribute('aria-checked', 'true');
+        el.setAttribute('tabindex', '0');
+        el.focus();
+      },
+      'key': function key(e) {
+        let key = e.keyCode;
+        if (key === 40 || key === 39) {
+          e.preventDefault();
+          let next = e.target.parentNode.nextElementSibling;
+          if (next) {
+            this.select(next.firstChild);
+          } else {
+            let first = e.target.parentNode.parentNode.firstElementChild.firstChild;
+            this.select(first);
+          }
+        } else if (key === 38 || key === 37) {
+          e.preventDefault();
+          let prev = e.target.parentNode.previousElementSibling;
+          if (prev) {
+            this.select(prev.firstChild);
+          } else {
+            let last = e.target.parentNode.parentNode.lastElementChild.firstChild;
+            this.select(last);
+          }
+        }
       }
     }
   });
