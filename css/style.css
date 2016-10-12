@@ -57,7 +57,7 @@ li {
   margin-right: 0;
 }
 
-.button, button {
+.button, button, [role="button"] {
   color: #fff;
   background-color: #870052;
   border-color: #870052;
@@ -80,12 +80,44 @@ li {
   transition: all .15s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 
+.pressed li {
+  display: block;
+}
+
+.pressed .confirm li {
+  display: inline;
+  width: 200px;
+}
+
+.pressed .confirm a {
+  min-width: 110px;
+}
+
+.pressed .confirm li:first-child a {
+  background-color: #ccc;
+  color: #333;
+  margin-right: 2em;
+}
+
+.pressed .confirm li:last-child a {
+  background-color: #d40963;
+}
+
+.pressed a {
+  text-decoration: none;
+  min-width: 190px;
+}
+
 .clicked {
   transform: scale(0.5);
 }
 
 .hidden, [aria-hidden="true"] {
   display: none;
+}
+
+.active, [aria-pressed="true"] {
+  background-color: #d40963;
 }
 
 .login button {

@@ -36,7 +36,7 @@
         <button></button>
         <p>Log in to see your loans</p>
       </div>
-    `,
+    `
   });
 
   Vue.component('description-win', {
@@ -45,7 +45,7 @@
         <button aria-label="Login" aria-describedby="login-description"></button>
         <p>Log in to <span id="login-description">see your loans</span></p>
       </div>
-    `,
+    `
   });
 
   Vue.component('menu-fail', {
@@ -93,6 +93,58 @@
       },
       'ariaHidden': function ah() {
         return this.hidden ? 'true' : 'false';
+      }
+    }
+  });
+
+  Vue.component('pressed-fail', {
+    'template': `
+      <div class="pressed">
+        <h1>Where do you want to pick up the book?</h1>
+        <ul>
+          <li><a href="javascript:void(0)" v-on:click="click" class="button">Huddinge</a></li>
+          <li><a href="javascript:void(0)" v-on:click="click" class="button">Solna</a></li>
+          <li><a href="javascript:void(0)" v-on:click="click" class="button">Home delivery</a></li>
+        </ul>
+        <ul class="confirm">
+          <li><a href="javascript:void(0)" class="button">Cancel</a></li>
+          <li><a href="javascript:void(0)" class="button">Request</a></li>
+        </ul>
+      </div>
+    `,
+    'methods': {
+      'click': function click(e) {
+        let locations = e.target.parentNode.parentNode.querySelectorAll('a');
+        for (let i = 0; i < locations.length; i += 1) {
+          locations[i].classList.remove('active');
+        }
+        e.target.classList.add('active');
+      }
+    }
+  });
+
+  Vue.component('pressed-win', {
+    'template': `
+      <div class="pressed">
+        <h1>Where do you want to pick up the book?</h1>
+        <ul>
+          <li><a href="javascript:void(0)" v-on:click="click" aria-pressed="false" role="button">Huddinge</a></li>
+          <li><a href="javascript:void(0)" v-on:click="click" aria-pressed="false" role="button">Solna</a></li>
+          <li><a href="javascript:void(0)" v-on:click="click" aria-pressed="false" role="button">Home delivery</a></li>
+        </ul>
+        <ul class="confirm">
+          <li><a href="javascript:void(0)" role="button">Cancel</a></li>
+          <li><a href="javascript:void(0)" role="button">Request</a></li>
+        </ul>
+      </div>
+    `,
+    'methods': {
+      'click': function click(e) {
+        let locations = e.target.parentNode.parentNode.querySelectorAll('a');
+        for (let i = 0; i < locations.length; i += 1) {
+          locations[i].setAttribute('aria-pressed', 'false');
+        }
+        e.target.setAttribute('aria-pressed', 'true');
       }
     }
   });
