@@ -153,8 +153,8 @@
         el.focus();
       },
       'key': function key(e) {
-        let key = e.keyCode;
-        if (key === 40 || key === 39) {
+        let keyCode = e.keyCode;
+        if (keyCode === 40 || keyCode === 39) {
           e.preventDefault();
           let next = e.target.parentNode.nextElementSibling;
           if (next) {
@@ -163,7 +163,7 @@
             let first = e.target.parentNode.parentNode.firstElementChild.firstChild;
             this.select(first);
           }
-        } else if (key === 38 || key === 37) {
+        } else if (keyCode === 38 || keyCode === 37) {
           e.preventDefault();
           let prev = e.target.parentNode.previousElementSibling;
           if (prev) {
