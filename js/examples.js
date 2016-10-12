@@ -30,6 +30,24 @@
     'mixins': [buttonClick]
   });
 
+  Vue.component('description-fail', {
+    'template': `
+      <div class="login">
+        <button></button>
+        <p>Log in to see your loans</p>
+      </div>
+    `,
+  });
+
+  Vue.component('description-win', {
+    'template': `
+      <div class="login">
+        <button aria-label="Login" aria-describedby="login-description"></button>
+        <p>Log in to <span id="login-description">see your loans</span></p>
+      </div>
+    `,
+  });
+
   Vue.component('menu-fail', {
     'template': `
       <div class="navigation">
