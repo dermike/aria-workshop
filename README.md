@@ -1,6 +1,6 @@
 # aria-workshop
 
-Examples for internal developer workshop showing how semantic markup and aria attributes improve accessibility and screen reader experience.
+Examples for an internal developer workshop showing how semantic markup and aria attributes improve accessibility and screen reader experience.
 
 [Node package manager](https://www.npmjs.com) is used for `npm install`, which in this case installs [Vue.js](https://github.com/vuejs/vue). This framework is then used to create the components for each example in `js/examples.js`. 
 
@@ -29,4 +29,16 @@ This `-fail` example has a button which toggles a menu using a `.hidden` class. 
 
 ## Example 4: Aria roles
 
-Here, the `-fail` example shows a list of links disguised as buttons, presenting a choice to be made.
+Here, the `-fail` example is based on a real implementation found in the organization, and shows a list of links disguised as buttons, presenting a choice to be made.
+
+Problems:
+* Screen reader announces the fake buttons as links.
+* There's only visual confirmation of the selected option.
+* Works like radio buttons, but are not radio buttons.
+
+The `-win` component solution:
+* Use `aria-labelledby` to explain the choices from the heading.
+* Use `radiogroup` and `radio` roles to make the links be announced as radio buttons.
+* Use `aria-checked` attribute to confirm which option is selected.
+* Add JavaScript to make the links act like radio buttons. `tabindex="-1"` to remove the non-selected options from the accessibility tree, and the ability to use up/down/left/right arrow keys to navigate the radio buttons.
+* Use `button` role for cancel and request links.
