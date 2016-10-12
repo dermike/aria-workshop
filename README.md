@@ -34,7 +34,7 @@ Here, the `-fail` example is based on a real implementation found in the organiz
 Problems:
 * Screen reader announces the fake buttons as links.
 * There's only visual confirmation of the selected option.
-* Works like radio buttons, but are not radio buttons.
+* Works visually like radio buttons, but not practically.
 
 The `-win` component solution:
 * Use `aria-labelledby` to explain the choices from the heading.
