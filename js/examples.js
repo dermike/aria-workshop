@@ -50,7 +50,7 @@
     'template': `
       <nav>
         <button v-bind:aria-expanded="ariaExpanded" v-on:click="hidden = !hidden">Menu</button>
-        <ul v-bind:aria-hidden="ariaHidden">
+        <ul v-bind:aria-hidden="ariaHidden" class="menu">
           <li>
             <a href="#">First link</a>
           </li>

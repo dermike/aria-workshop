@@ -26,11 +26,11 @@ section, div {
 }
 
 .toggle-example div.menu {
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 
 ol, ul {
-  margin: 1em 0 0 0;
+  margin: 1.5em 0 0 0;
   padding: 0;
 }
 
@@ -38,8 +38,23 @@ li {
   display: inline-block;
 }
 
-li:after {
-  content: "\00a0";
+.menu {
+  animation-fill-mode: both;
+  animation-duration: 0.8s;
+  animation-name: fadeInDown; 
+}
+
+.menu a {
+  margin-right: 1em;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 2px solid #b0ca3b;
+  border-right: 1px solid #b0ca3b;
+  padding: 6px 12px;
+}
+
+.menu > a:last-child, .menu li:last-child a {
+  margin-right: 0;
 }
 
 .button, button {
@@ -71,4 +86,15 @@ li:after {
 
 .hidden, [aria-hidden="true"] {
   display: none;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
