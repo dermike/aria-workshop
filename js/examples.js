@@ -67,8 +67,8 @@
   Vue.component('menu-win', {
     'template': `
       <nav>
-        <button v-bind:aria-expanded="ariaExpanded" v-on:click="hidden = !hidden">Menu</button>
-        <ul v-bind:aria-hidden="ariaHidden" class="menu">
+        <button aria-controls="menu" v-bind:aria-expanded="ariaExpanded" v-on:click="hidden = !hidden">Menu</button>
+        <ul v-bind:aria-hidden="ariaHidden" class="menu" id="menu">
           <li>
             <a href="#">First link</a>
           </li>
