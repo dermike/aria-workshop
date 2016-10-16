@@ -35,6 +35,7 @@ Problems:
 * Screen reader announces the fake buttons as links.
 * There's only visual confirmation of the selected option.
 * Works visually like radio buttons, but not practically.
+* Low color contrast between selected and non-selected options.
 
 The `-win` component solution:
 * Use `aria-labelledby` to explain the choices from the heading.
@@ -42,3 +43,4 @@ The `-win` component solution:
 * Use `aria-checked` attribute to confirm which option is selected.
 * Add JavaScript to make the links act like radio buttons. `tabindex="-1"` to remove the non-selected options from the accessibility tree, and the ability to use up/down/left/right arrow keys to navigate the radio buttons.
 * Use `button` role for cancel and request links.
+* Change color to increase contrast for selected option.

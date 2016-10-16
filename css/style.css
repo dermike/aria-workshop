@@ -108,6 +108,11 @@ li {
   min-width: 190px;
 }
 
+.checked [aria-checked="true"] {
+  background-color: #b0ca3b;
+  color: #333;
+}
+
 .clicked {
   transform: scale(0.5);
 }
